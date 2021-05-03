@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,16 +19,10 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get("/", function(){
-    return "Martin first";
-});
-Route::get("/courses/{course}", function($course){
-    return "the course is: $course";
-});
-Route::get("/courses/{team}/{player?}", function($team, $player = null){
-    if($player === true){
-        return "player is: $player";
-    }else{
-        return "team is $team n player is $player";
-    }
-});
+Route::get("/", HomeController::class)->name('home');
+
+Route::get("/courses", [CourseController::class, 'index'])->name('courses.index');
+
+Route::get("/courses/create", [CourseController::class, 'create'])->name('courses.create');
+
+Route::get("/courses/{course}", [CourseController::class, 'show'])->name('courses.show');
