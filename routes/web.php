@@ -13,6 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get("/", function(){
+    return "Martin first";
+});
+Route::get("/courses/{course}", function($course){
+    return "the course is: $course";
+});
+Route::get("/courses/{team}/{player?}", function($team, $player = null){
+    if($player === true){
+        return "player is: $player";
+    }else{
+        return "team is $team n player is $player";
+    }
 });
